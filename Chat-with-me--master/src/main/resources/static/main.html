@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlaBlaChat - Chat Interface</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* General Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a {
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #444;
+        }
+
+        /* Main Content Area */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: color 0.3s ease;
+        }
+
+        /* Stefi Theme (Red Tones) */
+        .theme-1 {
+            background-color: #6D2932;
+            color: #EAD8B1; /* Light Beige for text */
+        }
+
+        .theme-1 .sidebar {
+            background-color: #4a1c1d;
+        }
+
+        .theme-1 .sidebar a {
+            color: #EAD8B1; /* Light Beige text for sidebar */
+        }
+
+        .theme-1 .sidebar a:hover {
+            background-color: #d77f7a; /* Lighter Red on hover */
+        }
+
+        /* Rares Theme (Blue Tones) */
+        .theme-2 {
+            background-color: #003135;
+            color: #EAD8B1; /* Light Beige for text */
+        }
+
+        .theme-2 .sidebar {
+            background-color: #001F3F;
+        }
+
+        .theme-2 .sidebar a {
+            color: #EAD8B1; /* Light Beige text for sidebar */
+        }
+
+        .theme-2 .sidebar a:hover {
+            background-color: #3A6D8C; /* Medium Blue on hover */
+        }
+
+        /* Button Styling */
+        .btn-theme {
+            color: #ffffff;
+            background-color: #333333; /* Default red button */
+            border-radius: 25px;
+            padding: 10px 30px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-theme:hover {
+            background-color: #555555; /* Light Red on hover */
+        }
+
+        /* Modal Styling */
+        .modal-content {
+            background-color: #3A6D8C; /* Blue background */
+            color: #EAD8B1;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .modal-footer .btn {
+            font-weight: bold;
+            border-radius: 25px;
+        }
+
+        /* Button Styles for Modal */
+        .btn-stephi {
+            background-color: #6D2932; /* Stefi button (Red theme) */
+            color: #fff;
+        }
+
+        .btn-stephi:hover {
+            background-color: #F7CAC9;
+        }
+
+        .btn-rares {
+            background-color: #001F3F; /* Dark Blue for Rares theme */
+            color: #fff;
+        }
+
+        .btn-rares:hover {
+            background-color: #003366; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body> <!-- No default theme here; we apply it via JS -->
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <div>
+        <h3 class="text-center mb-4">BlaBlaChat</h3>
+        <a href="preview.html"><i class="fas fa-sign-out-alt"></i> Logout</a> <!-- Link back to preview.html for logging out -->
+        <a href="#"><i class="fas fa-home"></i> Home</a>
+        <a href="#"><i class="fas fa-user-cog"></i> Manage Profile</a>
+        <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+        <!-- Add more sidebar links here as needed -->
+    </div>
+    <div class="text-center mt-4">
+        <a href="javascript:void(0)" class="btn-theme" onclick="showThemeModal()">Change Theme</a>
+    </div>
+</div>
+
+<!-- Main Content Area -->
+<div class="content">
+    <div class="container">
+        <h2>Welcome to BlaBlaChat!</h2>
+        <p>Start chatting and sharing media with your friends here.</p>
+        <!-- Include chat, group invite, media sharing, and more as needed -->
+    </div>
+</div>
+
+<!-- Modal for choosing theme -->
+<div class="modal fade" id="themeModal" tabindex="-1" role="dialog" aria-labelledby="themeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="themeModalLabel">Select a Theme</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: white;">&times;</span> <!-- White "X" button -->
+                </button>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-stephi" onclick="applyStefiTheme()">Stefi</button>
+                <button class="btn btn-rares" onclick="applyRaresTheme()">Rares</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Check if a theme is stored in localStorage
+    window.onload = function() {
+        const theme = localStorage.getItem('theme');
+        if (theme) {
+            document.body.classList.add(theme); // Apply stored theme
+        } else {
+            document.body.classList.add('theme-1'); // Default to Stefi if no theme is stored
+        }
+    };
+
+    // Show the theme selection modal
+    function showThemeModal() {
+        $('#themeModal').modal('show');
+    }
+
+    // Apply Stefi theme (Red theme with red gradient animation)
+    function applyStefiTheme() {
+        document.body.classList.remove('theme-2');
+        document.body.classList.add('theme-1');
+        localStorage.setItem('theme', 'theme-1'); // Save theme to localStorage
+        $('#themeModal').modal('hide');
+    }
+
+    // Apply Rares theme (Blue theme with blue gradient animation)
+    function applyRaresTheme() {
+        document.body.classList.remove('theme-1');
+        document.body.classList.add('theme-2');
+        localStorage.setItem('theme', 'theme-2'); // Save theme to localStorage
+        $('#themeModal').modal('hide');
+    }
+</script>
+
+</body>
+</html>
