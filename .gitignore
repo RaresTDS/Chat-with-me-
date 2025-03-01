@@ -1,10 +1,26 @@
+<<<<<<< HEAD
 HELP.md
+=======
+>>>>>>> 76e37b3 (Final)
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+<<<<<<< HEAD
 ### STS ###
+=======
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+>>>>>>> 76e37b3 (Final)
 .apt_generated
 .classpath
 .factorypath
@@ -13,12 +29,15 @@ target/
 .springBeans
 .sts4-cache
 
+<<<<<<< HEAD
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
 
+=======
+>>>>>>> 76e37b3 (Final)
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
@@ -31,3 +50,9 @@ build/
 
 ### VS Code ###
 .vscode/
+<<<<<<< HEAD
+=======
+
+### Mac OS ###
+.DS_Store
+>>>>>>> 76e37b3 (Final)
